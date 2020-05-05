@@ -1,45 +1,97 @@
 <template>
-  <nav class="nav__wrapper" id="navbar">
-    <ul class="nav">
-      <li role="presentation" class="active">
-        <a href="#" class="nav__element" @click.prevent="Navigate('About')">
-          <span class="nav__counter">About</span>
-        </a>
-      </li>
+  <div>
+    <nav class="nav__wrapper" id="navbar">
+      <ul class="nav">
+        <li role="presentation" :class="{ activeNav: this.AboutActive }">
+          <a
+            href="#About"
+            class="nav__element"
+            id="AboutNav"
+            v-smooth-scroll
+            v-on:click="
+              toggleActive();
+              AboutActive = true;
+            "
+          >
+            <span class="nav__counter">About</span>
+          </a>
+        </li>
 
-      <li role="presentation">
-        <a
-          bind:href="#"
-          class="nav__element"
-          @click.prevent="Navigate('Download')"
+        <li role="presentation" :class="{ activeNav: this.DownloadActive }">
+          <a
+            href="#Download"
+            class="nav__element"
+            id="DownloadNav"
+            v-smooth-scroll
+            v-on:click="
+              toggleActive();
+              DownloadActive = true;
+            "
+          >
+            <span class="nav__counter">Download</span>
+          </a>
+        </li>
+
+        <li
+          role="presentation"
+          :class="{ activeNav: this.SubmitActive }"
+          id="SubmitNav"
         >
-          <span class="nav__counter">Download</span>
-        </a>
-      </li>
+          <a
+            href="#Submit"
+            class="nav__element"
+            v-smooth-scroll
+            v-on:click="
+              toggleActive();
+              SubmitActive = true;
+            "
+          >
+            <span class="nav__counter">Submit</span>
+          </a>
+        </li>
 
-      <li role="presentation">
-        <a href="#" class="nav__element" @click.prevent="Navigate('Submit')">
-          <span class="nav__counter">Submit</span>
-        </a>
-      </li>
-
-      <li role="presentation">
-        <a href="#" class="nav__element" @click.prevent="Navigate('Contact')">
-          <span class="nav__counter">Contact</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+        <li role="presentation" :class="{ activeNav: this.ContactActive }">
+          <a
+            href="#Contact"
+            class="nav__element"
+            id="ContactNav"
+            v-smooth-scroll
+            v-on:click="
+              toggleActive();
+              ContactActive = true;
+            "
+          >
+            <span class="nav__counter">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <Scheme />
+  </div>
 </template>
 
 <script>
+import Scheme from "@/components/MainScheme";
+
 export default {
   name: "Navbar",
-  components: {},
+  components: {
+    Scheme
+  },
+  data: function() {
+    return {
+      AboutActive: true,
+      DownloadActive: false,
+      SubmitActive: false,
+      ContactActive: false
+    };
+  },
   methods: {
-    Navigate(event) {
-      var target = document.getElementById(event);
-      console.log(target);
+    toggleActive() {
+      this.AboutActive = false;
+      this.DownloadActive = false;
+      this.SubmitActive = false;
+      this.ContactActive = false;
     }
   }
 };
@@ -119,7 +171,7 @@ export default {
       }
     }
 
-    &.active {
+    &.activeNav {
       pointer-events: none;
       padding-left: 1em;
 
