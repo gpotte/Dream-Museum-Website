@@ -1,9 +1,9 @@
 <template>
   <div>
-    <About />
-    <Download />
-    <Submit />
-    <Contact />
+    <About v-view="AboutScrollHandler" />
+    <Download v-view="DownloadScrollHandler" />
+    <Submit v-view="SubmitScrollHandler" />
+    <Contact v-view="ContactScrollHandler" />
   </div>
 </template>
 
@@ -20,6 +20,20 @@ export default {
     Download,
     Submit,
     Contact
+  },
+  methods: {
+    AboutScrollHandler(e) {
+      if (e.type == "enter") this.$emit("UpdateScroll", "About", e.type);
+    },
+    DownloadScrollHandler(e) {
+      if (e.type == "enter") this.$emit("UpdateScroll", "Download", e.type);
+    },
+    SubmitScrollHandler(e) {
+      if (e.type == "enter") this.$emit("UpdateScroll", "Submit", e.type);
+    },
+    ContactScrollHandler(e) {
+      if (e.type == "enter") this.$emit("UpdateScroll", "Contact", e.type);
+    }
   }
 };
 </script>

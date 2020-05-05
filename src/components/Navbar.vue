@@ -66,7 +66,7 @@
         </li>
       </ul>
     </nav>
-    <Scheme />
+    <Scheme @UpdateScroll="updateScroll" />
   </div>
 </template>
 
@@ -92,6 +92,13 @@ export default {
       this.DownloadActive = false;
       this.SubmitActive = false;
       this.ContactActive = false;
+    },
+    updateScroll(Elem) {
+      this.toggleActive();
+      if (Elem == "About") this.AboutActive = true;
+      else if (Elem == "Download") this.DownloadActive = true;
+      else if (Elem == "Submit") this.SubmitActive = true;
+      else if (Elem == "Contact") this.ContactActive = true;
     }
   }
 };

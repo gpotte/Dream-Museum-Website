@@ -1,10 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import vueSmoothScroll from "vue-smooth-scroll";
+import checkView from "vue-check-view";
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 Vue.use(vueSmoothScroll);
+Vue.use(checkView);
 
 const routes = [
   {
