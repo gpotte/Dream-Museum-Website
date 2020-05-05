@@ -1,5 +1,5 @@
 <template>
-  <div class="main"></div>
+  <div class="main jumbotron jumbotron-fluid" id="Submit"></div>
 </template>
 
 <script>
@@ -8,11 +8,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.main {
-  background-color: #343434;
-  min-height: 30vh;
-  width: 100vw;
-  padding: 3vh;
-}
-</style>
+<style scoped></style>

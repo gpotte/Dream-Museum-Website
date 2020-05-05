@@ -1,5 +1,5 @@
 <template>
-  <div class="main jumbotron jumbotron-fluid">
+  <div class="main jumbotron jumbotron-fluid" id="About">
     <div class="container">
       <!-- PROJECT TITLE + PROJECT DESCRIPTION + SOCIAL NETWORK (small)-->
       <H1 id="title">Dream Museum</H1>
@@ -23,14 +23,5 @@ export default {
   created() {}
 };
 </script>
-<style scoped>
-.main {
-  background-color: #111111;
-  min-height: 30vh;
-  width: 100vw;
-  padding: 3vh;
-}
-#title {
-  color: azure;
-}
-</style>
+
+<style scoped></style>

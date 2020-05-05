@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+  }
+  
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: white;
+  }
+  
+  #nav {
+    padding: 30px;
+  }
+  
+  #nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  #nav a.router-link-exact-active {
+    color: #42b983;
+  }
+  
+  div .main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    $colors: #111111, #232323, #343434, #464646;
+    @for $i from 1 through length($colors) {
+      &:nth-child(#{$i}) {
+        background: nth($colors, $i)
+      }
+    }
+  }

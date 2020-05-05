@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main jumbotron jumbotron-fluid" id="Download">
     <DownloadCard />
   </div>
 </template>
@@ -14,11 +14,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.main {
-  background-color: #232323;
-  min-height: 30vh;
-  width: 100vw;
-  padding: 3vh;
-}
-</style>
+<style scoped></style>
