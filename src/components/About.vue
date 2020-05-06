@@ -2,7 +2,7 @@
   <div class="main" id="About">
     <div class="container">
       <!-- PROJECT TITLE + PROJECT DESCRIPTION + SOCIAL NETWORK (small)-->
-      <H1 class="display-1" id="title">Dream Museum</H1>
+      <H1 class="display-1" id="title">Dream Museum</H1><br />
       <h4>
         Where is the frontier between the night and day and how do your dreams
         impact your life?
@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .display-1 {
-  font-size: 12vh;
-  line-height: 1.4;
+  font-size: 13vw;
+  line-height: 0.8;
 }
 </style>
