@@ -1,5 +1,5 @@
 <template>
-  <div class="main jumbotron jumbotron-fluid" id="Download">
+  <div class="main jumbotron-fluid" id="Download">
     <DownloadCard />
   </div>
 </template>

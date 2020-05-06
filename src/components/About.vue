@@ -1,8 +1,17 @@
 <template>
-  <div class="main jumbotron jumbotron-fluid" id="About">
+  <div class="main" id="About">
     <div class="container">
       <!-- PROJECT TITLE + PROJECT DESCRIPTION + SOCIAL NETWORK (small)-->
-      <H1 id="title">Dream Museum</H1>
+      <H1 class="display-1" id="title">Dream Museum</H1>
+      <h4>
+        Where is the frontier between the night and day and how do your dreams
+        impact your life?
+      </h4>
+      <h4>Dream Museum is a collaborative VR experience.</h4>
+      <h4>
+        The goal of this museum is to collect 3D objects created from
+        recollections of dreams.
+      </h4>
 
       <Stats />
     </div>
@@ -24,4 +33,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.display-1 {
+  font-size: 12vh;
+  line-height: 1.4;
+}
+</style>

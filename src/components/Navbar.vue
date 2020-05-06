@@ -1,32 +1,18 @@
 <template>
   <div>
-    <nav class="nav__wrapper" id="navbar">
-      <ul class="nav">
+    <nav class="nav__wrapper d-none d-md-block" id="navbar">
+      <ul class="nav list-group ">
         <li role="presentation" :class="{ activeNav: this.AboutActive }">
-          <a
-            href="#About"
-            class="nav__element"
-            id="AboutNav"
-            v-smooth-scroll
-            v-on:click="
-              toggleActive();
-              AboutActive = true;
-            "
-          >
+          <a href="#About" class="nav__element" id="AboutNav" v-smooth-scroll>
             <span class="nav__counter">About</span>
           </a>
         </li>
-
         <li role="presentation" :class="{ activeNav: this.DownloadActive }">
           <a
             href="#Download"
             class="nav__element"
             id="DownloadNav"
             v-smooth-scroll
-            v-on:click="
-              toggleActive();
-              DownloadActive = true;
-            "
           >
             <span class="nav__counter">Download</span>
           </a>
@@ -37,15 +23,7 @@
           :class="{ activeNav: this.SubmitActive }"
           id="SubmitNav"
         >
-          <a
-            href="#Submit"
-            class="nav__element"
-            v-smooth-scroll
-            v-on:click="
-              toggleActive();
-              SubmitActive = true;
-            "
-          >
+          <a href="#Submit" class="nav__element" v-smooth-scroll>
             <span class="nav__counter">Submit</span>
           </a>
         </li>
@@ -56,10 +34,6 @@
             class="nav__element"
             id="ContactNav"
             v-smooth-scroll
-            v-on:click="
-              toggleActive();
-              ContactActive = true;
-            "
           >
             <span class="nav__counter">Contact</span>
           </a>
@@ -80,6 +54,7 @@ export default {
   },
   data: function() {
     return {
+      CheckPercent: [0, 0, 0, 0],
       AboutActive: true,
       DownloadActive: false,
       SubmitActive: false,
@@ -93,12 +68,26 @@ export default {
       this.SubmitActive = false;
       this.ContactActive = false;
     },
-    updateScroll(Elem) {
+    updateScroll(Elem, percent) {
+      this.CheckPercent[Elem] = percent;
+
+      //DETERMINE CLOSEST TO 0.5
+      var curr = this.CheckPercent[0];
+      var index = 0;
+      var diff = Math.abs(0.5 - curr);
+      for (var val = 0; val < this.CheckPercent.length; val++) {
+        var newdiff = Math.abs(0.5 - this.CheckPercent[val]);
+        if (newdiff < diff) {
+          diff = newdiff;
+          curr = this.CheckPercent[val];
+          index = val;
+        }
+      }
       this.toggleActive();
-      if (Elem == "About") this.AboutActive = true;
-      else if (Elem == "Download") this.DownloadActive = true;
-      else if (Elem == "Submit") this.SubmitActive = true;
-      else if (Elem == "Contact") this.ContactActive = true;
+      if (index == 0) this.AboutActive = true;
+      else if (index == 1) this.DownloadActive = true;
+      else if (index == 2) this.SubmitActive = true;
+      else if (index == 3) this.ContactActive = true;
     }
   }
 };
@@ -117,7 +106,7 @@ export default {
   }
 
   & {
-    margin: 0 0 25vh 3vw;
+    margin: 60vh 0 0 4vw;
   }
   &__counter {
     font-size: 24px;

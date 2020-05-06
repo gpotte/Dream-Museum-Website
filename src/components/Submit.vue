@@ -1,5 +1,5 @@
 <template>
-  <div class="main jumbotron jumbotron-fluid" id="Submit"></div>
+  <div class="main jumbotron-fluid" id="Submit"></div>
 </template>
 
 <script>

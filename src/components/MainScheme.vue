@@ -23,16 +23,20 @@ export default {
   },
   methods: {
     AboutScrollHandler(e) {
-      if (e.type == "enter") this.$emit("UpdateScroll", "About", e.type);
+      //if (e.type == "enter")
+      this.$emit("UpdateScroll", 0, e.percentCenter);
     },
     DownloadScrollHandler(e) {
-      if (e.type == "enter") this.$emit("UpdateScroll", "Download", e.type);
+      //if (e.type == "enter")
+      this.$emit("UpdateScroll", 1, e.percentCenter);
     },
     SubmitScrollHandler(e) {
-      if (e.type == "enter") this.$emit("UpdateScroll", "Submit", e.type);
+      //if (e.type == "enter")
+      this.$emit("UpdateScroll", 2, e.percentCenter);
     },
     ContactScrollHandler(e) {
-      if (e.type == "enter") this.$emit("UpdateScroll", "Contact", e.type);
+      //if (e.type == "enter")
+      this.$emit("UpdateScroll", 3, e.percentCenter);
     }
   }
 };
