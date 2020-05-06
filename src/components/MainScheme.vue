@@ -2,6 +2,7 @@
   <div>
     <About v-view="AboutScrollHandler" />
     <Download v-view="DownloadScrollHandler" />
+    <MobileDownload class="" />
     <Submit v-view="SubmitScrollHandler" />
     <Contact v-view="ContactScrollHandler" />
   </div>
@@ -12,6 +13,7 @@ import About from "@/components/About";
 import Download from "@/components/DownloadCarousel";
 import Submit from "@/components/Submit";
 import Contact from "@/components/Contact";
+import MobileDownload from "@/components/MobileDownload";
 
 export default {
   name: "Scheme",
@@ -19,7 +21,8 @@ export default {
     About,
     Download,
     Submit,
-    Contact
+    Contact,
+    MobileDownload
   },
   methods: {
     AboutScrollHandler(e) {
