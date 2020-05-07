@@ -1,18 +1,21 @@
 <template>
-  <div class="main jumbotron-fluid d-none d-md-flex" id="Download">
-    <DownloadCard
-      v-for="(info, x) in DownloadInfos"
-      :key="x"
-      v-bind:info="info"
-    />
+  <div class="main jumbotron-fluid d-none d-md-block" id="Download">
+    <p class="display-3">Download</p>
+    <div class="d-md-flex" style="justify-content: center">
+      <DownloadCard
+        v-for="(info, x) in DownloadInfos"
+        :key="x"
+        v-bind:info="info"
+        v-bind:index="x"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 
 import DownloadCard from "@/components/DownloadCard";
-import { CarouselCard, CarouselCardItem } from "vue-carousel-card";
 import "vue-carousel-card/styles/index.css";
 
 export default {
@@ -90,9 +93,8 @@ export default {
 </script>
 
 <style scoped>
-.display-1 {
-  font-size: 8vw;
-  line-height: 0.8;
+.display-3 {
+  line-height: 2.5;
   display: block;
 }
 </style>

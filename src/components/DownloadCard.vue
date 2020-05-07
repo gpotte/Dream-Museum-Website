@@ -19,16 +19,17 @@ export default {
   components: {
     Card
   },
-  props: ["info"],
+  props: ["info", "index"],
   created: function() {
     console.log(this.info.OS);
   },
   methods: {
     downloadItem() {
       Axios.get(
+        //CHANGE URL
         "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
         { responseType: "blob" }
-      ) //CHANGE URL
+      )
         .then(response => {
           const blob = new Blob([response.data], {
             type: response.headers["content-type"]
