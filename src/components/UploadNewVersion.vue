@@ -1,8 +1,8 @@
 <template>
-  <div class="main jumbotron-fluid" id="Submit">
+  <div class="main jumbotron-fluid">
     <div class="Darkform container" >
-      <form @submit.prevent="SubmitDream" class="row" style="display: block">
-        <h2 class="display-4">Submit A Dream</h2>
+      <form @submit.prevent="UploadFile" class="row" style="display: block">
+        <h2 class="display-4">Upload New Version</h2>
         <div class="form-group" v-if="errors.length">
           <h4 v-for="(error, x) in errors" :key="x" class="text-danger">
             {{ error }}
@@ -11,53 +11,30 @@
         <div class="form-group">
           <input
             class="form-control"
-            type="email"
-            v-model="email"
-            placeholder="Email *"
+            type="text"
+            v-model="OS"
+            placeholder="OS *"
           />
         </div>
         <div class="form-group">
           <input
             class="form-control"
             type="text"
-            v-model="name"
-            placeholder="Name *"
+            v-model="Version"
+            placeholder="Version *"
           />
         </div>
         <div class="form-group">
-          <input
-            class="form-control"
-            type="text"
-            v-model="DreamName"
-            placeholder="Name of your Dream *"
-          />
+          <p style="text-align: left">OS ICON *</p>
+          <input type="file" class="form-control-file" @change="getLogoData"/>
         </div>
         <div class="form-group">
-          <p style="text-align: left">3d object *</p>
-          <input type="file" accept=".obj" class="form-control-file" @change="getFileData"/>
-        </div>
-        <div class="form-group">
-          <textarea
-            v-model="story"
-            class="form-control"
-            placeholder="Share the story of your dream (optionnal)"
-          ></textarea>
-        </div>
-        <div class="form-group">
-          <input class="checkbox" type="checkbox" v-model="informed" />
-          <p>Would you like to be informed of the usage of your object ?</p>
-        </div>
-        <div class="form-group">
-          <input class="checkbox" type="checkbox" v-model="Newsletter" />
-          <p>
-            Would you like to be informed of the new releases and other
-            projects<br />
-            (one release every 15th of the month) ?
-          </p>
+          <p style="text-align: left">File *</p>
+          <input type="file" class="form-control-file" @change="getFileData"/>
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" type="submit">
-            Submit Your Dream
+            UPLOAD
           </button>
         </div>
       </form>
@@ -66,24 +43,50 @@
 </template>
 
 <script>
+// @ is an alias to /src
+
 export default {
-  name: "Submit",
-  data: function() {
+  name: "UploadNewVersion",
+  components: {
+
+  },
+   data: function() {
     return {
       errors: [],
-      DreamFile: null,
-      email: "",
-      name: "",
-      DreamName: "",
-      story: "",
-      informed: true,
-      Newsletter: false
+      File: null,
+      Logo: null,
+      OS: "",
+      Version: ""
     };
   },
   methods: {
     getFileData(e){
-      this.DreamFile = e.target.files[0]
-      console.log(this.DreamFile)
+      this.File = e.target.files[0]
+    },
+    getLogoData(e){
+      this.Logo = e.target.files[0]
+    },
+    UploadFile(){
+      if (!this.File || this.OS == "" || !this.Logo || this.FileName == "" || this.Version == "" )
+        this.errors = ["One or several components are missing"]
+      else {
+        let formData = new FormData();
+        formData.append('file', this.File);
+        formData.append('logo', this.Logo);
+        formData.append('OS', this.OS);
+        formData.append('Version', this.Version);
+        this.$axios.post(this.$APIURL + '/version', formData)
+        .then(()=>{
+          this.errors = [];
+          this.File = null
+          this.Logo = null
+          this.OS = ""
+          this.Version = ""
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      }
     }
   }
 };

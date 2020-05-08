@@ -79,7 +79,6 @@ $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
 $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
 .title {
-  font-family: "Raleway";
   font-size: 4vw;
   font-weight: 700;
   color: #5d4037;
@@ -205,7 +204,6 @@ p + p {
 }
 
 .card-info h1 {
-  font-family: "Playfair Display";
   font-size: 36px;
   font-weight: 700;
   text-shadow: rgba(black, 0.5) 0 10px 10px;

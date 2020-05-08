@@ -1,5 +1,5 @@
 {
-  "name": "museum-front",
+  "name": "dream-museum",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "vue": "^2.6.11",
     "vue-carousel-card": "^1.0.3",
     "vue-check-view": "^0.3.0",
+    "vue-cookies": "^1.7.0",
     "vue-router": "^3.1.6",
     "vue-smooth-scroll": "^1.0.13"
   },

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Card :data-image="info.Logo">
+    <Card :data-image="'http://localhost:7700/logos/' +info.logo">
       <h1 slot="header">{{ info.OS }}</h1>
-      <p slot="content">{{ info.ReleaseDate }}</p>
-      <p slot="content">{{ info.Version }}</p>
+      <p slot="content">{{ info.date }}</p>
+      <p slot="content">{{ info.version }}</p>
       <a class="btn btn-dark" slot="content" @click.prevent="downloadItem"
         >Download</a
       >
@@ -13,7 +13,6 @@
 
 <script>
 import Card from "@/components/Card";
-import Axios from "axios";
 export default {
   name: "DownloadCard",
   components: {
@@ -21,13 +20,11 @@ export default {
   },
   props: ["info", "index"],
   created: function() {
-    console.log(this.info.OS);
   },
   methods: {
     downloadItem() {
-      Axios.get(
-        //CHANGE URL
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png",
+      this.$axios.get(
+      'http://localhost:7700/download/'+this.info.path,
         { responseType: "blob" }
       )
         .then(response => {
@@ -36,7 +33,7 @@ export default {
           });
           const link = document.createElement("a");
           link.href = URL.createObjectURL(blob);
-          link.download = this.info.OS; //CHANGE BY NAME
+          link.download = this.info.name;
           link.click();
           URL.revokeObjectURL(link.href);
         })

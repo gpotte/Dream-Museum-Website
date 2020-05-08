@@ -5,6 +5,7 @@ import checkView from "vue-check-view";
 import Home from "../views/Home.vue";
 import Admin from "../views/Admin.vue";
 import Login from "../views/Login.vue";
+import Axios from "axios";
 
 Vue.use(VueRouter);
 Vue.use(vueSmoothScroll);
@@ -35,10 +36,24 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(function(to, from, next) {
   const authRequired = to.matched.some(route => route.meta.auth);
-  const authed = true; //CHANGE BY AXIOS REQUEST TO API (CHECKING COOKIE)
-  if (authRequired && !authed) {
+
+  if (authRequired) {
+    if ($cookies.get("Session")){
+    Axios.get("http://localhost:7700" + '/login', {params: {
+      UserID: $cookies.get("Session").data
+    }})
+    .then((r)=>{
+      if (r.data == "USERAUTH")
+        next();
+      else
+        next("/login");
+    })
+    .catch((e)=>{
+      next("/login");
+    })
+    } else 
     next("/login");
   } else {
     next();
