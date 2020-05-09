@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card :data-image="'http://localhost:7700/logos/' + info.logo">
+    <Card :data-image="'gpotte.drich.fr:7700/logos/' + info.logo">
       <h1 slot="header">{{ info.OS }}</h1>
       <p slot="content">{{ info.date }}</p>
       <p slot="content">{{ info.version }}</p>
@@ -23,7 +23,7 @@ export default {
   methods: {
     downloadItem() {
       this.$axios
-        .get("http://localhost:7700/download/" + this.info.path, {
+        .get("gpotte.drich.fr:7700/download/" + this.info.path, {
           responseType: "blob"
         })
         .then(response => {

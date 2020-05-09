@@ -15,7 +15,7 @@
         <td>{{ version.OS }}</td>
         <td>{{ version.date }}</td>
         <td>{{ version.version }}</td>
-        <td><img :src="'http://localhost:7700/logos/' + version.logo" /></td>
+        <td><img :src="'gpotte.drich.fr:7700/logos/' + version.logo" /></td>
         <td>
           <a
             class="btn btn-dark"
@@ -70,7 +70,7 @@ export default {
   methods: {
     downloadItem(e) {
       this.$axios
-        .get("http://localhost:7700/download/" + e.path, {
+        .get("gpotte.drich.fr:7700/download/" + e.path, {
           responseType: "blob"
         })
         .then(response => {

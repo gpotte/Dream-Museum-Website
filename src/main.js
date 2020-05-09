@@ -10,7 +10,7 @@ Vue.$cookies.config("3h");
 
 //GLOBAL VARS
 Vue.prototype.$axios = Axios;
-Vue.prototype.$APIURL = "http://localhost:7700";
+Vue.prototype.$APIURL = "gpotte.drich.fr:7700";
 
 Vue.config.productionTip = false;
 

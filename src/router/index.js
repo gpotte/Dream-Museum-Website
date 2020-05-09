@@ -41,7 +41,7 @@ router.beforeEach(function(to, from, next) {
 
   if (authRequired) {
     if ($cookies.get("Session")) {
-      Axios.get("http://localhost:7700" + "/login", {
+      Axios.get("gpotte.drich.fr:7700" + "/login", {
         params: {
           UserID: $cookies.get("Session").data
         }
