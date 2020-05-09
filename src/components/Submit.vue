@@ -11,6 +11,9 @@
         <h4 v-if="success" class="text-success">
           Your dream has been submitted
         </h4>
+        <h4 v-if="processing" class="text-primary">
+          This might take a minute
+        </h4>
         <div class="form-group">
           <input
             class="form-control"
@@ -79,6 +82,7 @@ export default {
   data: function() {
     return {
       success: false,
+      processing: false,
       errors: [],
       DreamFile: null,
       email: "",
@@ -102,6 +106,7 @@ export default {
       )
         this.errors = ["One or several components are missing"];
       else {
+        this.processing = true;
         let formData = new FormData();
         formData.append("file", this.DreamFile);
         formData.append("email", this.email);
@@ -119,6 +124,7 @@ export default {
             this.name = "";
             this.DreamName = "";
             this.story = "";
+            this.processing = false;
           })
           .catch(err => {
             console.log(err);
