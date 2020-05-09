@@ -1,6 +1,7 @@
 <template>
   <div class="main jumbotron-fluid d-none d-md-block" id="Download">
     <p class="display-3">Download</p>
+    <p class="display-5">This is still an early development, VR is not yet supported and updates are to come</p>
     <div class="d-md-flex" style="justify-content: center">
       <DownloadCard
         v-for="(info, x) in DownloadInfos"

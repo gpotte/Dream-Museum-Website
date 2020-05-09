@@ -43,7 +43,7 @@ export default {
             router.replace("/admin");
           }
         })
-        .catch(() {
+        .catch(()=>{
           this.error = true;
         });
     }
