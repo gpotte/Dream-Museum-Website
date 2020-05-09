@@ -40,21 +40,20 @@ router.beforeEach(function(to, from, next) {
   const authRequired = to.matched.some(route => route.meta.auth);
 
   if (authRequired) {
-    if ($cookies.get("Session")){
-    Axios.get("http://localhost:7700" + '/login', {params: {
-      UserID: $cookies.get("Session").data
-    }})
-    .then((r)=>{
-      if (r.data == "USERAUTH")
-        next();
-      else
-        next("/login");
-    })
-    .catch((e)=>{
-      next("/login");
-    })
-    } else 
-    next("/login");
+    if ($cookies.get("Session")) {
+      Axios.get("http://localhost:7700" + "/login", {
+        params: {
+          UserID: $cookies.get("Session").data
+        }
+      })
+        .then(r => {
+          if (r.data == "USERAUTH") next();
+          else next("/login");
+        })
+        .catch(() => {
+          next("/login");
+        });
+    } else next("/login");
   } else {
     next();
   }

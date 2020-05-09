@@ -1,6 +1,6 @@
 <template>
   <div class="main jumbotron-fluid" id="Submit">
-    <div class="Darkform container" >
+    <div class="Darkform container">
       <form @submit.prevent="SubmitDream" class="row" style="display: block">
         <h2 class="display-4">Submit A Dream</h2>
         <div class="form-group" v-if="errors.length">
@@ -8,6 +8,9 @@
             {{ error }}
           </h4>
         </div>
+        <h4 v-if="success" class="text-success">
+          Your dream has been submitted
+        </h4>
         <div class="form-group">
           <input
             class="form-control"
@@ -34,7 +37,12 @@
         </div>
         <div class="form-group">
           <p style="text-align: left">3d object *</p>
-          <input type="file" accept=".obj" class="form-control-file" @change="getFileData"/>
+          <input
+            type="file"
+            accept=".obj"
+            class="form-control-file"
+            @change="getFileData"
+          />
         </div>
         <div class="form-group">
           <textarea
@@ -70,6 +78,7 @@ export default {
   name: "Submit",
   data: function() {
     return {
+      success: false,
       errors: [],
       DreamFile: null,
       email: "",
@@ -81,9 +90,40 @@ export default {
     };
   },
   methods: {
-    getFileData(e){
-      this.DreamFile = e.target.files[0]
-      console.log(this.DreamFile)
+    getFileData(e) {
+      this.DreamFile = e.target.files[0];
+    },
+    SubmitDream() {
+      if (
+        !this.DreamFile ||
+        this.email == "" ||
+        !this.name ||
+        this.DreamName == ""
+      )
+        this.errors = ["One or several components are missing"];
+      else {
+        let formData = new FormData();
+        formData.append("file", this.DreamFile);
+        formData.append("email", this.email);
+        formData.append("name", this.name);
+        formData.append("dreamName", this.DreamName);
+        formData.append("story", this.story);
+        formData.append("informed", this.informed);
+        formData.append("newsletter", this.Newsletter);
+        this.$axios
+          .post(this.$APIURL + "/dream", formData)
+          .then(() => {
+            this.errors = [];
+            this.success = true;
+            this.email = "";
+            this.name = "";
+            this.DreamName = "";
+            this.story = "";
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
   }
 };
@@ -91,7 +131,7 @@ export default {
 
 <style scoped>
 .main {
-  overflow: auto; 
+  overflow: auto;
 }
 
 .Darkform {
@@ -108,9 +148,9 @@ form {
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
 form {
-	@media screen and ( max-width: 768px ) {
-		max-width: unset !important;
-	}
+  @media screen and (max-width: 768px) {
+    max-width: unset !important;
+  }
 }
 .form-control {
   background: none;

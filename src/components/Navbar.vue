@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <nav class="nav__wrapper d-none d-md-block" id="navbar">
       <ul class="nav list-group ">
         <li role="presentation" :class="{ activeNav: this.AboutActive }">

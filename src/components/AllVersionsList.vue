@@ -11,15 +11,27 @@
         </tr>
       </thead>
       <tr class="" v-for="(version, x) in Versions" :key="x">
-        <td>{{version.name}}</td>
-        <td>{{version.OS}}</td>
-        <td>{{version.date}}</td>
-        <td>{{version.version}}</td>
-        <td><img :src="'http://localhost:7700/logos/' + version.logo"></img></td>
-        <td><a class="btn btn-dark" slot="content" @click.prevent="downloadItem(version)"
-        >Download</a></td>
-      <td><a class="btn btn-danger" slot="content" @click.prevent="destroyItem(version._id)"
-        >DESTROY</a></td>
+        <td>{{ version.name }}</td>
+        <td>{{ version.OS }}</td>
+        <td>{{ version.date }}</td>
+        <td>{{ version.version }}</td>
+        <td><img :src="'http://localhost:7700/logos/' + version.logo" /></td>
+        <td>
+          <a
+            class="btn btn-dark"
+            slot="content"
+            @click.prevent="downloadItem(version)"
+            >Download</a
+          >
+        </td>
+        <td>
+          <a
+            class="btn btn-danger"
+            slot="content"
+            @click.prevent="destroyItem(version._id)"
+            >DESTROY</a
+          >
+        </td>
       </tr>
     </table>
   </div>
@@ -30,38 +42,37 @@
 
 export default {
   name: "AllVersionsList",
-  components: {
-
-  },
+  components: {},
   data: function() {
     return {
       Versions: []
-      }
+    };
   },
-  created(){
-        this.Versions = [];
-          this.$axios.get(this.$APIURL + '/version')
-          .then((list)=>{
-            var i;
-            for (i = 0; i < list.data.length; i++ ){
-              var date = new Date(list.data[i].date);
-              var month = date.getMonth() + 1;
-              var day = date.getDate();
-              var year = date.getFullYear();
-              list.data[i].date = day + "/" +month+ "/" + year
-            }
-          this.Versions = list.data;
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
+  created() {
+    this.Versions = [];
+    this.$axios
+      .get(this.$APIURL + "/version")
+      .then(list => {
+        var i;
+        for (i = 0; i < list.data.length; i++) {
+          var date = new Date(list.data[i].date);
+          var month = date.getMonth() + 1;
+          var day = date.getDate();
+          var year = date.getFullYear();
+          list.data[i].date = day + "/" + month + "/" + year;
+        }
+        this.Versions = list.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   methods: {
-        downloadItem(e) {
-      this.$axios.get(
-        'http://localhost:7700/download/'+e.path,
-        { responseType: "blob" }
-      )
+    downloadItem(e) {
+      this.$axios
+        .get("http://localhost:7700/download/" + e.path, {
+          responseType: "blob"
+        })
         .then(response => {
           const blob = new Blob([response.data], {
             type: response.headers["content-type"]
@@ -74,43 +85,42 @@ export default {
         })
         .catch(console.error);
     },
-      fetchAllItems() {
-        this.Versions = [];
-          this.$axios.get(this.$APIURL + '/version')
-          .then((list)=>{
-            var i;
-            for (i = 0; i < list.data.length; i++ ){
-              var date = new Date(list.data[i].date);
-              var month = date.getMonth() + 1;
-              var day = date.getDate();
-              var year = date.getFullYear();
-              list.data[i].date = day + "/" +month+ "/" + year
-            }
+    fetchAllItems() {
+      this.Versions = [];
+      this.$axios
+        .get(this.$APIURL + "/version")
+        .then(list => {
+          var i;
+          for (i = 0; i < list.data.length; i++) {
+            var date = new Date(list.data[i].date);
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var year = date.getFullYear();
+            list.data[i].date = day + "/" + month + "/" + year;
+          }
           this.Versions = list.data;
         })
-        .catch((err)=>{
+        .catch(err => {
           console.log(err);
-        })
-      }
+        });
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.table{
+.table {
   background: #343434;
   color: white;
 
-  &-item{
+  &-item {
     background: #343434;
     display: flex;
     width: 90vw;
-
   }
-  td img{
+  td img {
     width: 9vh;
     max-width: 100px;
   }
 }
-
 </style>

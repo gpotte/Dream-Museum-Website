@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script >
+<script>
 import Stats from "@/components/Stats";
 
 export default {
@@ -29,21 +29,19 @@ export default {
   data: function() {
     return {};
   },
-  created() {
-  }
+  created() {}
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-  
-    width: 50vw;
-    margin-top: 5vw;
+  width: 50vw;
+  margin-top: 5vw;
 }
 .container {
-	@media screen and ( max-width: 768px ) {
-		width: unset !important;
-	}
+  @media screen and (max-width: 768px) {
+    width: unset !important;
+  }
 }
 .display-1 {
   font-size: 13vw;

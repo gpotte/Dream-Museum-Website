@@ -1,6 +1,5 @@
 <template>
-  <div class="main" style="background: #343434">
-  </div>
+  <div class="main" style="background: #343434"></div>
 </template>
 
 <script>
@@ -8,8 +7,6 @@
 
 export default {
   name: "AllObjList",
-  components: {
-
-  }
+  components: {}
 };
 </script>

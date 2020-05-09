@@ -1,6 +1,6 @@
 <template>
   <div class="main jumbotron-fluid">
-    <div class="Darkform container" >
+    <div class="Darkform container">
       <form @submit.prevent="UploadFile" class="row" style="display: block">
         <h2 class="display-4">Upload New Version</h2>
         <div class="form-group" v-if="errors.length">
@@ -26,11 +26,11 @@
         </div>
         <div class="form-group">
           <p style="text-align: left">OS ICON *</p>
-          <input type="file" class="form-control-file" @change="getLogoData"/>
+          <input type="file" class="form-control-file" @change="getLogoData" />
         </div>
         <div class="form-group">
           <p style="text-align: left">File *</p>
-          <input type="file" class="form-control-file" @change="getFileData"/>
+          <input type="file" class="form-control-file" @change="getFileData" />
         </div>
         <div class="form-group">
           <button class="btn btn-primary btn-block" type="submit">
@@ -47,10 +47,8 @@
 
 export default {
   name: "UploadNewVersion",
-  components: {
-
-  },
-   data: function() {
+  components: {},
+  data: function() {
     return {
       errors: [],
       File: null,
@@ -60,32 +58,39 @@ export default {
     };
   },
   methods: {
-    getFileData(e){
-      this.File = e.target.files[0]
+    getFileData(e) {
+      this.File = e.target.files[0];
     },
-    getLogoData(e){
-      this.Logo = e.target.files[0]
+    getLogoData(e) {
+      this.Logo = e.target.files[0];
     },
-    UploadFile(){
-      if (!this.File || this.OS == "" || !this.Logo || this.FileName == "" || this.Version == "" )
-        this.errors = ["One or several components are missing"]
+    UploadFile() {
+      if (
+        !this.File ||
+        this.OS == "" ||
+        !this.Logo ||
+        this.FileName == "" ||
+        this.Version == ""
+      )
+        this.errors = ["One or several components are missing"];
       else {
         let formData = new FormData();
-        formData.append('file', this.File);
-        formData.append('logo', this.Logo);
-        formData.append('OS', this.OS);
-        formData.append('Version', this.Version);
-        this.$axios.post(this.$APIURL + '/version', formData)
-        .then(()=>{
-          this.errors = [];
-          this.File = null
-          this.Logo = null
-          this.OS = ""
-          this.Version = ""
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
+        formData.append("file", this.File);
+        formData.append("logo", this.Logo);
+        formData.append("OS", this.OS);
+        formData.append("Version", this.Version);
+        this.$axios
+          .post(this.$APIURL + "/version", formData)
+          .then(() => {
+            this.errors = [];
+            this.File = null;
+            this.Logo = null;
+            this.OS = "";
+            this.Version = "";
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
   }
@@ -94,7 +99,7 @@ export default {
 
 <style scoped>
 .main {
-  overflow: auto; 
+  overflow: auto;
 }
 
 .Darkform {
@@ -111,9 +116,9 @@ form {
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
 }
 form {
-	@media screen and ( max-width: 768px ) {
-		max-width: unset !important;
-	}
+  @media screen and (max-width: 768px) {
+    max-width: unset !important;
+  }
 }
 .form-control {
   background: none;

@@ -17,7 +17,7 @@
 
 <script>
 // @ is an alias to /src
-import router from '@/router/index'
+import router from "@/router/index";
 
 export default {
   name: "Login",
@@ -32,19 +32,20 @@ export default {
   methods: {
     //BUILD LOGIN API + SET COOKIE
     LoginForm() {
-      this.$axios.post(this.$APIURL + '/login', {
-        login: this.login,
-        password: this.password
-      })
-      .then(function(res){
-        if (res.status == 200){
-            $cookies.set("Session", {data: res.data});
-            router.replace('/admin');
-        }
-      })
-      .catch((err)=>{
-        this.error = true
-      })
+      this.$axios
+        .post(this.$APIURL + "/login", {
+          login: this.login,
+          password: this.password
+        })
+        .then(function(res) {
+          if (res.status == 200) {
+            $cookies.set("Session", { data: res.data });
+            router.replace("/admin");
+          }
+        })
+        .catch(() {
+          this.error = true;
+        });
     }
   }
 };

@@ -13,7 +13,6 @@
 </template>
 
 <script>
-
 import DownloadCard from "@/components/DownloadCard";
 import "vue-carousel-card/styles/index.css";
 
@@ -29,21 +28,22 @@ export default {
   },
   created() {
     this.Versions = [];
-          this.$axios.get(this.$APIURL + '/version')
-          .then((list)=>{
-            var i;
-            for (i = 0; i < list.data.length; i++ ){
-              var date = new Date(list.data[i].date);
-              var month = date.getMonth() + 1;
-              var day = date.getDate();
-              var year = date.getFullYear();
-              list.data[i].date = day + "/" +month+ "/" + year
-            }
-          this.DownloadInfos = list.data;
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
+    this.$axios
+      .get(this.$APIURL + "/version")
+      .then(list => {
+        var i;
+        for (i = 0; i < list.data.length; i++) {
+          var date = new Date(list.data[i].date);
+          var month = date.getMonth() + 1;
+          var day = date.getDate();
+          var year = date.getFullYear();
+          list.data[i].date = day + "/" + month + "/" + year;
+        }
+        this.DownloadInfos = list.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 </script>
@@ -51,10 +51,9 @@ export default {
 <style scoped>
 .d-md-block {
   justify-content: center;
-
 }
 
-.d-md-flex{
+.d-md-flex {
   flex-wrap: wrap;
   margin-left: 25vw;
   max-width: 50vw;

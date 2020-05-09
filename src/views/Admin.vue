@@ -1,8 +1,8 @@
 <template>
   <div>
-    <UploadNewVersion/>
-    <AllVersionsList/>
-    <AllObjList/>
+    <UploadNewVersion />
+    <AllVersionsList />
+    <AllObjList />
   </div>
 </template>
 
