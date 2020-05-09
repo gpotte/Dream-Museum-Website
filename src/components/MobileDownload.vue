@@ -14,7 +14,7 @@
       >
         <img
           class="d-block w-100"
-          :src="'gpotte.drich.fr:7700/logos/' + info.logo"
+          :src="'http://api.dream-museum.space/logos/' + info.logo"
         /><br />
         <div class="carousel-caption">
           <h1 slot="header">{{ info.OS }}</h1>
@@ -63,7 +63,7 @@ export default {
   methods: {
     downloadItem(info) {
       this.$axios
-        .get("gpotte.drich.fr:7700/download/" + info.path, {
+        .get("http://api.dream-museum.space/download/" + info.path, {
           responseType: "blob"
         })
         .then(response => {
