@@ -14,7 +14,7 @@
       >
         <img
           class="d-block w-100"
-          :src="'http://api.dream-museum.space/logos/' + info.logo"
+          :src="'https://api.dream-museum.space/logos/' + info.logo"
         /><br />
         <div class="carousel-caption">
           <h1 slot="header">{{ info.OS }}</h1>
@@ -63,7 +63,7 @@ export default {
   methods: {
     downloadItem(info) {
       this.$axios
-        .get("http://api.dream-museum.space/download/" + info.path, {
+        .get("https://api.dream-museum.space/download/" + info.path, {
           responseType: "blob"
         })
         .then(response => {

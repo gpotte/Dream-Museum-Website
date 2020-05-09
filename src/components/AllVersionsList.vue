@@ -15,7 +15,7 @@
         <td>{{ version.OS }}</td>
         <td>{{ version.date }}</td>
         <td>{{ version.version }}</td>
-        <td><img :src="'http://api.dream-museum.space/logos/' + version.logo" /></td>
+        <td><img :src="'https://api.dream-museum.space/logos/' + version.logo" /></td>
         <td>
           <a
             class="btn btn-dark"
@@ -70,7 +70,7 @@ export default {
   methods: {
     downloadItem(e) {
       this.$axios
-        .get("http://api.dream-museum.space/download/" + e.path, {
+        .get("https://api.dream-museum.space/download/" + e.path, {
           responseType: "blob"
         })
         .then(response => {

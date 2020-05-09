@@ -10,7 +10,7 @@ Vue.$cookies.config("3h");
 
 //GLOBAL VARS
 Vue.prototype.$axios = Axios;
-Vue.prototype.$APIURL = "http://api.dream-museum.space";
+Vue.prototype.$APIURL = "https://api.dream-museum.space";
 
 Vue.config.productionTip = false;
 

@@ -41,7 +41,7 @@ router.beforeEach(function(to, from, next) {
 
   if (authRequired) {
     if ($cookies.get("Session")) {
-      Axios.get("http://api.dream-museum.space" + "/login", {
+      Axios.get("https://api.dream-museum.space" + "/login", {
         params: {
           UserID: $cookies.get("Session").data
         }

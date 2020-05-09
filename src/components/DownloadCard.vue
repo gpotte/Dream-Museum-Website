@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Card :data-image="'http://api.dream-museum.space/logos/' + info.logo">
+    <Card :data-image="'https://api.dream-museum.space/logos/' + info.logo">
       <h1 slot="header">{{ info.OS }}</h1>
       <p slot="content">{{ info.date }}</p>
       <p slot="content">{{ info.version }}</p>
@@ -23,7 +23,7 @@ export default {
   methods: {
     downloadItem() {
       this.$axios
-        .get("http://api.dream-museum.space/download/" + this.info.path, {
+        .get("https://api.dream-museum.space/download/" + this.info.path, {
           responseType: "blob"
         })
         .then(response => {
