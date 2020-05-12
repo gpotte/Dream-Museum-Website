@@ -7,11 +7,16 @@
         Where is the frontier between the night and day and how do your dreams
         impact your life?
       </h4>
-      <h4>Dream Museum is a collaborative VR experience.</h4>
+      <h4>
+        Dream Museum is a collaborative VR experience where you can wander in a
+        virtual art gallery generated from the dreams of creative minds.
+      </h4>
       <h4>
         The goal of this museum is to collect 3D objects created from
-        recollections of dreams.
+        recollections of dreams, anyone is welcome to participate by submitting
+        a 3d object that will be included in the museum.
       </h4>
+      <youtube :video-id="id"></youtube>
 
       <Stats />
     </div>
@@ -27,7 +32,9 @@ export default {
     Stats
   },
   data: function() {
-    return {};
+    return {
+      id: "23hszqJRiME"
+    };
   },
   created() {}
 };

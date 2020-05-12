@@ -17,7 +17,8 @@
     "vue-check-view": "^0.3.0",
     "vue-cookies": "^1.7.0",
     "vue-router": "^3.1.6",
-    "vue-smooth-scroll": "^1.0.13"
+    "vue-smooth-scroll": "^1.0.13",
+    "vue-youtube-embed": "^2.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-eslint": "~4.3.0",
