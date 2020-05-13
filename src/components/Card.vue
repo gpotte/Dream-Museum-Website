@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="card-wrap"
-    @mousemove="handleMouseMove"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
-    ref="card"
-  >
+  <div class="card-wrap" ref="card">
     <div class="card" :style="cardStyle">
       <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
       <div class="card-info">
