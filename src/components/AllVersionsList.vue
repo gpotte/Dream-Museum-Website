@@ -15,7 +15,9 @@
         <td>{{ version.OS }}</td>
         <td>{{ version.date }}</td>
         <td>{{ version.version }}</td>
-        <td><img :src="'https://api.dream-museum.space/logos/' + version.logo" /></td>
+        <td>
+          <img :src="'https://api.dream-museum.space/logos/' + version.logo" />
+        </td>
         <td>
           <a
             class="btn btn-dark"
@@ -99,6 +101,18 @@ export default {
             list.data[i].date = day + "/" + month + "/" + year;
           }
           this.Versions = list.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    destroyItem(id) {
+      this.$axios
+        .delete(this.$APIURL + "/version", { params: { id: id } })
+        .then(() => {
+          this.Versions.forEach((version, i) => {
+            if (version._id == id) this.Versions.splice(i, 1);
+          });
         })
         .catch(err => {
           console.log(err);
